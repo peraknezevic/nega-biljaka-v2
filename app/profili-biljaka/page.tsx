@@ -1,28 +1,25 @@
-import prisma from "@/prisma/client"
-import React from "react"
-import PageHead from "../components/PageHead"
+import { Metadata } from "next"
+import { getAllPlantProfiles } from "../_utils/actions"
 import Card from "../components/Card"
 import CardGrid from "../components/CardGrid"
-import { Metadata } from "next"
+import PageHead from "../components/PageHead"
 
 export const metadata: Metadata = {
   title: "Profili biljaka - Nega biljaka",
   description: "Vodiči za negu vaših sobnih biljaka",
 }
 
-const ProfiliBiljaka = async () => {
-  const items = await prisma.plantProfile.findMany({
-    where: { published: "PUBLISHED" },
-  })
+const PlantProfiles = async () => {
+  const plants = await getAllPlantProfiles()
 
   return (
     <>
       <PageHead title="Profili biljaka" />
       <CardGrid>
-        {items.map((item) => (
+        {plants.map((plant) => (
           <Card
-            key={item.id}
-            item={item}
+            key={plant.id}
+            item={plant}
             imgFolder="plants"
             pageFolder="profili-biljaka"
           />
@@ -32,4 +29,4 @@ const ProfiliBiljaka = async () => {
   )
 }
 
-export default ProfiliBiljaka
+export default PlantProfiles
