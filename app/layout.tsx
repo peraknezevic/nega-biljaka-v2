@@ -1,7 +1,6 @@
-import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
+import type { Metadata } from "next"
 import "./globals.css"
-import { SessionProvider } from "next-auth/react"
 
 export const metadata: Metadata = {
   title: "Nega Biljaka",
@@ -14,10 +13,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body className={GeistSans.className}>{children}</body>
-      </html>
-    </SessionProvider>
+    <html lang="en">
+      <body
+        className={`${GeistSans.className} bg-pink-50 text-emerald-950 dark:bg-emerald-950 dark:text-zinc-300`}
+      >
+        <div className="mx-auto my-8 max-w-4xl md:py-16">{children}</div>
+      </body>
+    </html>
   )
 }
