@@ -17,3 +17,11 @@ export const getAllPlantProfiles = async () => {
     },
   })
 }
+
+export const getAllGenera = async () => {
+  return await prisma.genusPage.findMany({
+    where: {
+      published: "PUBLISHED",
+    },
+  })
+}
