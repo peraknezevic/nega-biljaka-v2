@@ -1,6 +1,13 @@
+import "./globals.css"
+
 import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
-import "./globals.css"
+import { PHProvider } from "./providers"
+import dynamic from "next/dynamic"
+
+const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
+  ssr: false,
+})
 
 export const metadata: Metadata = {
   title: "Nega Biljaka",
@@ -14,11 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${GeistSans.className} bg-pink-50 text-emerald-950 dark:bg-emerald-950 dark:text-zinc-300`}
-      >
-        <div className="mx-auto my-8 max-w-4xl md:py-16">{children}</div>
-      </body>
+      <PHProvider>
+        <body
+          className={`${GeistSans.className} bg-pink-50 text-emerald-950 dark:bg-emerald-950 dark:text-zinc-300`}
+        >
+          <PostHogPageView />
+          <div className="mx-auto my-8 max-w-4xl md:py-16">{children}</div>
+        </body>
+      </PHProvider>
     </html>
   )
 }

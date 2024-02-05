@@ -13,6 +13,7 @@
     "geist": "^1.1.0",
     "next": "14.0.3",
     "next-cloudinary": "^5.20.0",
+    "posthog-js": "^1.104.4",
     "react": "^18",
     "react-dom": "^18"
   },
